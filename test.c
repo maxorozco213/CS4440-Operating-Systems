@@ -1,20 +1,20 @@
 #include <stdio.h>
 
 int main (int argc, char *argv[]) {
-  // char word[80];
-  int number = 2345678;
+  int c;
   FILE *fp;
-  char buff[255];
+  char buff[4096];
 
-  // printf("Enter %d somethings ", number);
-  // scanf("%s", word);
-  fp = fopen("Users/maximilian/desktop/test.txt", "r");
-  fscanf(fp, "%s", buff);
-  printf("%s", buff);
-
+  printf("Enter %d somethings ", number);
+  scanf("%s", word);
+  fp = fopen("test.txt", "r");
+  if (fp) {
+    while((c = getc(fp)) !=EOF){
+      putchar(c);
+    }
+    fclose(fp);
+  }
 
 
   // char *fgets( char *buf, int n, FILE *fp );
-
-  return 0;
 }
