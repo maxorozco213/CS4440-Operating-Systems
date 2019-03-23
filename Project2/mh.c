@@ -16,9 +16,14 @@ typedef struct Children {
   int bed;
   int taskNumber;
   int childId;
-} Child;
+} Children;
 
-Child children[11];
+typedef struct Parents {
+  int isMother;
+  int days;
+} Parent;
+
+Children children[11];
 int size = SIZE(children);
 bool check = true;
 //initialize the mutex
@@ -99,8 +104,11 @@ void* fatherThread() {
 }
 
 int main(int argc, char *argv[0]) {
+  int whichParent;
   pthread_t mother;
   pthread_t father;
+
+  Parent parent;
 
   if(argc == 2) {
     printf("Entry is %s\n", argv[1]);
@@ -126,10 +134,10 @@ int main(int argc, char *argv[0]) {
     //create the threads
     pthread_create(&mother, 0, motherThread, NULL);
     pthread_create(&father, 0, fatherThread, NULL);
-  }
     //join the threads
     pthread_join(father, NULL);
     pthread_join(mother, NULL);
+  }
 
   return 0;
 }
