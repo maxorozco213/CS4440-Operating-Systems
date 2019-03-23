@@ -1,0 +1,5 @@
+Put +#+ into substring
+Use regex to filter the ++
+Store # into int
+
+Regex (?<=\+)\d\d(?=\+)

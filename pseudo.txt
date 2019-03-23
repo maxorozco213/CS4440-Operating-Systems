@@ -1,0 +1,5 @@
+While current character is not + or -, putc into new file
+If current char == +
+	print a 1 x [next number]
+If current char == -
+	print a 0 x [next number]

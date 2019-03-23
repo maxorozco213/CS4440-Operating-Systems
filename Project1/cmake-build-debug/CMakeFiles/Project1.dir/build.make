@@ -57,27 +57,27 @@ include CMakeFiles/Project1.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/Project1.dir/flags.make
 
-CMakeFiles/Project1.dir/main.c.o: CMakeFiles/Project1.dir/flags.make
-CMakeFiles/Project1.dir/main.c.o: ../main.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/maximilian/cworkspace/Project1/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/Project1.dir/main.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/Project1.dir/main.c.o   -c /Users/maximilian/cworkspace/Project1/main.c
+CMakeFiles/Project1.dir/MyCompress.c.o: CMakeFiles/Project1.dir/flags.make
+CMakeFiles/Project1.dir/MyCompress.c.o: ../MyCompress.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/maximilian/cworkspace/Project1/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/Project1.dir/MyCompress.c.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/Project1.dir/MyCompress.c.o   -c /Users/maximilian/cworkspace/Project1/MyCompress.c
 
-CMakeFiles/Project1.dir/main.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/Project1.dir/main.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/maximilian/cworkspace/Project1/main.c > CMakeFiles/Project1.dir/main.c.i
+CMakeFiles/Project1.dir/MyCompress.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/Project1.dir/MyCompress.c.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/maximilian/cworkspace/Project1/MyCompress.c > CMakeFiles/Project1.dir/MyCompress.c.i
 
-CMakeFiles/Project1.dir/main.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/Project1.dir/main.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/maximilian/cworkspace/Project1/main.c -o CMakeFiles/Project1.dir/main.c.s
+CMakeFiles/Project1.dir/MyCompress.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/Project1.dir/MyCompress.c.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/maximilian/cworkspace/Project1/MyCompress.c -o CMakeFiles/Project1.dir/MyCompress.c.s
 
 # Object files for target Project1
 Project1_OBJECTS = \
-"CMakeFiles/Project1.dir/main.c.o"
+"CMakeFiles/Project1.dir/MyCompress.c.o"
 
 # External object files for target Project1
 Project1_EXTERNAL_OBJECTS =
 
-Project1: CMakeFiles/Project1.dir/main.c.o
+Project1: CMakeFiles/Project1.dir/MyCompress.c.o
 Project1: CMakeFiles/Project1.dir/build.make
 Project1: CMakeFiles/Project1.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/maximilian/cworkspace/Project1/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking C executable Project1"

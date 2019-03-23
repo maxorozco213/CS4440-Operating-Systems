@@ -4,7 +4,6 @@
 
 int main() {
   pid_t pid;
-  char executable[100];
 
     pid = fork();
 
@@ -15,8 +14,7 @@ int main() {
 
     else if (pid == 0) {
       printf("This is child\n");
-      scanf("%s", executable)
-      execl("/bin/ls", "ls", "-l", 0);
+
     }
 
     else {

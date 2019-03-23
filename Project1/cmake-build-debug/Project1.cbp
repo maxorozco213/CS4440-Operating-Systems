@@ -80,7 +80,7 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/Users/maximilian/cworkspace/Project1/main.c">
+		<Unit filename="/Users/maximilian/cworkspace/Project1/MyCompress.c">
 			<Option target="Project1"/>
 		</Unit>
 		<Unit filename="/Users/maximilian/cworkspace/Project1/CMakeLists.txt">

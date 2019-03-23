@@ -123,32 +123,32 @@ Project1/fast:
 	$(MAKE) -f CMakeFiles/Project1.dir/build.make CMakeFiles/Project1.dir/build
 .PHONY : Project1/fast
 
-main.o: main.c.o
+MyCompress.o: MyCompress.c.o
 
-.PHONY : main.o
+.PHONY : MyCompress.o
 
 # target to build an object file
-main.c.o:
-	$(MAKE) -f CMakeFiles/Project1.dir/build.make CMakeFiles/Project1.dir/main.c.o
-.PHONY : main.c.o
+MyCompress.c.o:
+	$(MAKE) -f CMakeFiles/Project1.dir/build.make CMakeFiles/Project1.dir/MyCompress.c.o
+.PHONY : MyCompress.c.o
 
-main.i: main.c.i
+MyCompress.i: MyCompress.c.i
 
-.PHONY : main.i
+.PHONY : MyCompress.i
 
 # target to preprocess a source file
-main.c.i:
-	$(MAKE) -f CMakeFiles/Project1.dir/build.make CMakeFiles/Project1.dir/main.c.i
-.PHONY : main.c.i
+MyCompress.c.i:
+	$(MAKE) -f CMakeFiles/Project1.dir/build.make CMakeFiles/Project1.dir/MyCompress.c.i
+.PHONY : MyCompress.c.i
 
-main.s: main.c.s
+MyCompress.s: MyCompress.c.s
 
-.PHONY : main.s
+.PHONY : MyCompress.s
 
 # target to generate assembly for a file
-main.c.s:
-	$(MAKE) -f CMakeFiles/Project1.dir/build.make CMakeFiles/Project1.dir/main.c.s
-.PHONY : main.c.s
+MyCompress.c.s:
+	$(MAKE) -f CMakeFiles/Project1.dir/build.make CMakeFiles/Project1.dir/MyCompress.c.s
+.PHONY : MyCompress.c.s
 
 # Help Target
 help:
@@ -159,9 +159,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... Project1"
-	@echo "... main.o"
-	@echo "... main.i"
-	@echo "... main.s"
+	@echo "... MyCompress.o"
+	@echo "... MyCompress.i"
+	@echo "... MyCompress.s"
 .PHONY : help
 
 

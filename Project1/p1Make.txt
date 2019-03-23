@@ -1,0 +1,7 @@
+all: MyCompress ForkCompress
+
+MyCompress: MyCompress.c
+    gcc -o MyCompress MyCompress.c
+
+ForkCompress: ForkCompress.c
+    gcc -o ForkCompress ForkCompress.c
