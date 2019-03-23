@@ -6,14 +6,11 @@
 #include <stdbool.h>
 #include <semaphore.h>
 
+//define the size of the array (x) passed into it
 #define SIZE(x) (sizeof(x)/sizeof(x[0]) + 1);
 
+//create a child object with task attributes
 typedef struct Children {
-  int tasks[7];
-  int wake;
-  int breakfast;
-  int school;
-  int dinner;
   int bath;
   int book;
   int bed;
@@ -24,64 +21,91 @@ typedef struct Children {
 Child children[11];
 int size = SIZE(children);
 bool check = true;
-pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
-sem_t sem;
-int pshared = 0;
-uint sval = 0;
-// int sem_init(sem_t *sem, int pshared, uint sval);
+//initialize the mutex
+pthread_mutex_t mother = PTHREAD_MUTEX_INITIALIZER;
+int day;
 
-// performWake(Child child) {
-//   child.tasks[0] = 1;
-// }
-
-void* motherThread(void* days) {
-  int day = *((int*) days);
-  pthread_mutex_lock(&mutex);
+//starts with the program
+void* motherThread() {
+  // int day = *((int*) days);
+  //mutex is locked
+  pthread_mutex_lock(&mother);
   printf("Mother is waking up to take care of the children.\n");
-
-  for(int i = 0; i < day; i++) {
+  //loop for n days (provided through argument)
+  // for(int i = 0; i < day; i++) {
+    //modify each chlid in the array
     for(int j = 0; j < size; j++) {
-      // children[j].wake = 1;
-      // performWake(children[j]);
       printf("Child %d is being woken up.\n", children[j].childId);
-      usleep(500000);
+      usleep(50000);
     }
     for(int j = 0; j < size; j++) {
-      children[j].breakfast = 1;
       printf("Child %d is being fed breakfast.\n", children[j].childId);
-      usleep(500000);
+      usleep(50000);
     }
-  }
+    for(int j = 0; j < size; j++) {
+      printf("Child %d is being sent to school.\n", children[j].childId);
+      usleep(50000);
+    }
+    for(int j = 0; j < size; j++) {
+      printf("Child %d is being given dinner.\n", children[j].childId);
+      usleep(50000);
+    }
+    //mutex unlocks and father is now able to access
+    pthread_mutex_unlock(&mother);
+    for(int j = 0; j < size; j++) {
+      children[j].bath = 1;
+      printf("Child %d is being given a bath.\n", children[j].childId);
+      usleep(50000);
+    }
+  // }
 
-  pthread_mutex_unlock(&mutex);
-  printf("This is unlocked.\n");
-  usleep(500000);
+  printf("Mother is going to sleep.\n");
+  usleep(50000);
   pthread_exit(NULL);
 }
 
+//is sleeping when the program begins
 void* fatherThread() {
   sleep(2);
-  printf("**Father trying**\n");
-  while(check){
-    if(!pthread_mutex_trylock(&mutex)) {
-      for(int i = 0; i < size; i++){
-        printf("Child %d is being read a book\n", children[i].childId);
-        usleep(500000);
+  //Father thread first attempt to modify children
+  printf("**Father is trying.**\n");
+  while(check) {
+    //checking if the mutex is unlocked
+    if(!pthread_mutex_trylock(&mother)) {
+      for(int i = 0; i < size; i++) {
+        if(children[i].bath == 1) {
+          children[i].book = 1;
+          printf("Child %d is being read a book.\n", children[i].childId);
+          usleep(50000);
+        }
+        if(children[i].book == 1) {
+          children[i].bed = 1;
+          printf("Child %d is being tucked in.\n", children[i].childId);
+          usleep(50000);
+        }
       }
-      break;
+      printf("The code is reaching this.\n");
+      if(children[12].bed == 1) {
+        for(int i = 0; i < size; i++) {
+          children[i].bath = 0;
+          children[i].book = 0;
+        }
+      printf("THIS IS THE END OF DAY %d IN THE LIFE OF MOTHER HUBBARD.\n", day);
+      check = false;
+      }
     }
   }
-
   pthread_exit(NULL);
 }
 
 int main(int argc, char *argv[0]) {
   pthread_t mother;
   pthread_t father;
-  int nDays;
 
   if(argc == 2) {
     printf("Entry is %s\n", argv[1]);
+    //convert the argument to an int
+    day = atoi(argv[1]);
   }
   else if(argc > 2) {
     printf("Too many arguments.\n");
@@ -92,29 +116,20 @@ int main(int argc, char *argv[0]) {
     exit(0);
   }
 
-  for(int j = 0; j < 7; j++){
-    for(int i = 0; i < size; i++) {
-      children[i].tasks[j] = 0;
-      children[i].childId = i+1;
-    }
-    // children[i].wake = 0;
-    // children[i].breakfast = 0;
-    // children[i].school = 0;
-    // children[i].dinner = 0;
-    // children[i].bath = 0;
-    // children[i].book = 0;
-    // children[i].bed = 0;
+  //assign children IDs
+  for(int i = 0; i < size; i++) {
+    children[i].childId = i+1;
   }
 
-  printf("Task value is: %d\n", children[12].tasks[6]);
-  nDays = atoi(argv[1]);
-  // sem_init(&sem, 0, 1);
-  pthread_create(&mother, 0, motherThread, &nDays);
-  pthread_create(&father, 0, fatherThread, NULL);
-  pthread_join(mother, NULL);
-  pthread_join(father, NULL);
-
-  // printf("This is the size of children: %d\n", size);
+  printf("Mother has %d children.\n", size);
+  for(int i = 0; i < day; i++) {
+    //create the threads
+    pthread_create(&mother, 0, motherThread, NULL);
+    pthread_create(&father, 0, fatherThread, NULL);
+  }
+    //join the threads
+    pthread_join(father, NULL);
+    pthread_join(mother, NULL);
 
   return 0;
 }
