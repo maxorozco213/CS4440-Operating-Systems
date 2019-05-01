@@ -11,6 +11,7 @@ Result is sent back to the client to print.
 #include <errno.h>
 #include <unistd.h>
 #include <sys/types.h>
+#include <sys/wait.h>
 #include <arpa/inet.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
