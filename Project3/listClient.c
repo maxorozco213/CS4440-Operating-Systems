@@ -1,3 +1,10 @@
+/*
+Client connects to the server through a socket.
+A string is taken from command line and is sent to the server.
+String is a parameter for ls command in command line.
+Output from server is taken and printed.
+*/
+
 #include <stdio.h>
 #include <string.h>
 #include <sys/socket.h>
@@ -35,6 +42,7 @@ int main(int argc, char *argv[0]) {
     exit(0);
   }
 
+  //create socket
   if((createSocket = socket(AF_INET, SOCK_STREAM, 0)) < 0) {
     printf("Socket not created... \n");
     return 1;
@@ -43,7 +51,7 @@ int main(int argc, char *argv[0]) {
   //create socket structure
   serverIP.sin_family = AF_INET;
   serverIP.sin_port = htons(2017); //port forwarded on VM
-  serverIP.sin_addr.s_addr = inet_addr("127.0.0.1");
+  serverIP.sin_addr.s_addr = inet_addr("127.0.0.1"); //local host
   // serverIP.sin_addr.s_addr = inet_addr("40.114.73.53"); //set to linux VM IP
   //connect to the server
   connectStatus = connect(createSocket, (struct sockaddr *)&serverIP, sizeof(serverIP));

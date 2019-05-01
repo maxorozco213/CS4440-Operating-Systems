@@ -1,3 +1,9 @@
+/*
+Server waits for client to connect.
+Server take a string from the client and reverses it, then returns it through the
+socket to be displayed by the client.
+*/
+
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>

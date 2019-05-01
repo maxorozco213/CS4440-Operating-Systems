@@ -1,3 +1,10 @@
+/*
+Server takes an argument for ls command from the client then executes the command with
+the given parameter.
+Using dup2 function, the output is duplicated to the socket.
+Result is sent back to the client to print.
+*/
+
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -9,16 +16,6 @@
 #include <netinet/in.h>
 #include <stdbool.h>
 #include <pthread.h>
-
-FILE* result;
-//take given parameter and tag it on ls
-void* showDirectory(void* parameter) {
-  char* param = parameter;
-
-
-
-  return NULL;
-}
 
 int main(int argc, char *argv[0]) {
   time_t clock;
@@ -54,6 +51,7 @@ int main(int argc, char *argv[0]) {
     printf("Server hit...\n");
     recv(clientConnect, receiveString, sizeof(receiveString), 0);
 
+    //start the fork
     pid = fork();
 
     if(pid < 0) {
@@ -61,19 +59,22 @@ int main(int argc, char *argv[0]) {
       exit(0);
     }
     else if(pid == 0) {
+      //child process
       dup2(clientConnect, 1);
       dup2(clientConnect, 2);
       int out = execlp("/bin/ls", "ls", receiveString, (char*) NULL);
 
     }
     else {
+      //parent waiting for child
       wait(NULL);
     }
 
-    //write into a buffer (buffer name, size, format, content)
+    //write into a buffer.  NULL parameter prevents needless return of the given param
     write(clientConnect, NULL, strlen(receiveString));
     //close the socket
     close(clientConnect);
+    //wait 1 second
     sleep(1);
   }
 
